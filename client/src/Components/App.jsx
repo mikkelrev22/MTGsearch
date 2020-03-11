@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
 import axios from 'axios'
+import Card from './Card.jsx'
 
 class App extends Component {
   constructor () {
@@ -36,6 +37,9 @@ class App extends Component {
           </label>
           <input type="submit" value="Submit"/>
         </form>
+        <div>
+          <Card cardList={this.state.cards}/>
+        </div>
       </div>
     )
   }
