@@ -2,12 +2,16 @@ const express = require('express')
 const app = express()
 const PORT = process.env.port || 42069
 const axios = require('axios')
+const cors = require('cors')
 
+app.use(cors())
+
+app.use(express.static(__dirname + '/client/public'))
 app.get('/cards/:name', (req, res)=>{
-  console.log(req.params.name)
   axios.get(`https://api.scryfall.com/cards/named?fuzzy=${req.params.name}`)
-  .then((res)=>{
-    console.log(res)
+  .then((data)=>{
+    let resCardObj = {image: data.data.image_uris.small, name: data.data.name, text: data.data.oracle_text, colors: data.data.colors, mana_cost: data.data.mana_cost, cmc: data.data.cmc, price: data.data.prices.usd}
+    res.send(resCardObj)
   })
   .catch((error)=>{
     console.log(error)
