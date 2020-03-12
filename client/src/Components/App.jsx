@@ -1,8 +1,8 @@
-import React, {Component} from 'react'
+import React from 'react'
 import axios from 'axios'
 import Card from './Card.jsx'
 
-class App extends Component {
+class App extends React.Component {
   constructor () {
     super ()
     this.state = {
@@ -38,7 +38,7 @@ class App extends Component {
           <input type="submit" value="Submit"/>
         </form>
         <div>
-          <Card cardList={this.state.cards}/>
+          <Card cards={this.state.cards}/>
         </div>
       </div>
     )

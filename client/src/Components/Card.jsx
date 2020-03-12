@@ -1,11 +1,14 @@
 import React from 'react'
 
 const Card = (props) => {
-  const cardList = props.cardList
-  const mapCards = cardList.map((i, card)=>
-  <li key={i}>{console.log(card)}</li>
+  const cardList = props.cards
+  const mappedCards = cardList.map((card, i)=>
+<li key={i}> {card.name}: {card.mana_cost} <img src= {card.image}></img><div>{card.text}</div></li>)
+  return (
+    <ul>
+      {mappedCards}
+    </ul>
   )
-  return (<ul>{mapCards}</ul>)
 }
 
 export default Card
