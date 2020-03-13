@@ -8,7 +8,8 @@ app.use(cors())
 
 app.use(express.static(__dirname + '/client/public'))
 app.get('/cards/:name', (req, res)=>{
-  axios.get(`https://api.scryfall.com/cards/named?fuzzy=${req.params.name}`)
+  const {name} = req.params
+  axios.get(`https://api.scryfall.com/cards/named?fuzzy=${name}`)
   .then((data)=>{
     let resCardObj = {image: data.data.image_uris.small, name: data.data.name, text: data.data.oracle_text, colors: data.data.colors, mana_cost: data.data.mana_cost, cmc: data.data.cmc, price: data.data.prices.usd}
     res.send(resCardObj)
